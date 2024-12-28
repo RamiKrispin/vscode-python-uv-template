@@ -1,0 +1,11 @@
+exclude = [".git", ".venv", ".vscode", ".devcontainer", "docker"]
+line-length = 79
+indent-width = 4
+
+[lint]
+extend-select = ["E501"]
+
+
+[format]
+quite-style = "double"
+indent-style = "space"
