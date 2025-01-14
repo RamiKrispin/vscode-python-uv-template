@@ -1,6 +1,6 @@
 {
     "name": "python-dev",
-    "image": "docker.io/rkrispin/python-dev:arm64.0.0.1",
+    "image": "docker.io/rkrispin/python-dev:arm64.0.2.0",
     "customizations": {
         "vscode": {
             "settings": {
@@ -31,16 +31,17 @@
                 "ms-toolsai.datawrangler",
                 // Git
                 "mhutchie.git-graph",
-                "mhutchie.git-graph",
                 // Misc
                 "streetsidesoftware.code-spell-checker"
             ]
         }
     },
     // Optional, mount local volume:
-    // "mounts": [
-    //     "source=${localEnv:DATA_FOLDER},target=/home/csv,type=bind,consistency=cache"
-    // ],
+    "mounts": [
+        "source=${localEnv:HOME}/.zsh_history_dev,target=/root/.zsh_history,type=bind,consistency=cache",
+        "source=${localEnv:HOME}/.p10k.zsh_dev,target=/root/.p10k.zsh,type=bind,consistency=cache",
+        "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cache"
+    ],
     "remoteEnv": {
         "MY_VAR": "${localEnv:MY_VAR:test_var}"
     },
