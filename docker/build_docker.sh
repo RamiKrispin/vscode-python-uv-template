@@ -3,7 +3,7 @@
 # Image settings
 user_name=rkrispin
 image_label=python-dev
-image_tag=0.0.1
+image_tag=0.2.0
 quarto_ver="1.6.39"
 python_ver=3.11
 venv_name="python-$python_ver-dev"
@@ -31,6 +31,8 @@ docker build . -f $dockerfile \
                 --build-arg VENV_NAME=$venv_name \
                 --build-arg PYTHON_VER=$python_ver \
                 --build-arg RUFF_VER=$ruff_ver \
+                --build-arg GIT_USER_NAME=$GIT_USER_NAME \
+                --build-arg GIT_USER_EMAIL=$GIT_USER_EMAIL \
                 -t $image_name
 
 if [[ $? = 0 ]] ; then
