@@ -8,6 +8,7 @@ apt-get update && apt-get install -y --no-install-recommends \
    curl \
    zsh \
    git \
+   openssh-server \
    && rm -rf /var/lib/apt/lists/*
 
 # Installing oh my zsh
