@@ -8,6 +8,7 @@ This repository provides a template for a dockerized Python development environm
 - Ruff settings
 - Dockerfile
 - UV
+- zsh settings
 
 See also:
 - [A tutorial for setting this template](https://medium.com/@rami.krispin/setting-a-dockerized-python-development-environment-template-de2400c4812b)
