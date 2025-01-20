@@ -24,6 +24,7 @@
                 "ms-toolsai.jupyter",
                 "streetsidesoftware.code-spell-checker",
                 "tamasfe.even-better-toml",
+                "aaron-bond.better-comments",
                 //Code
                 "oderwat.indent-rainbow",
                 // Data
@@ -36,15 +37,15 @@
             ]
         }
     },
-    // Optional, mount local volume:
+    // Optional, local zsh history:
     "mounts": [
-        "source=${localEnv:HOME}/.zsh_history_dev,target=/root/.zsh_history,type=bind,consistency=cache",
-        "source=${localEnv:HOME}/.p10k.zsh_dev,target=/root/.p10k.zsh,type=bind,consistency=cache",
-        "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cache"
+        "source=${localEnv:HOME}/.zsh_history_dev,target=/root/.zsh_history,type=bind,consistency=cache"
     ],
+    // Optional set environment variables:
     "remoteEnv": {
         "MY_VAR": "${localEnv:MY_VAR:test_var}"
     },
+    // Optional load environment variables from a file:
     "runArgs": [
         "--env-file",
         ".devcontainer/devcontainer.env"

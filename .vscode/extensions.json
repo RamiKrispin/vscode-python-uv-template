@@ -9,6 +9,7 @@
         "ms-toolsai.jupyter",
         "streetsidesoftware.code-spell-checker",
         "tamasfe.even-better-toml",
+        "aaron-bond.better-comments",
         //Code
         "oderwat.indent-rainbow",
         // Data
