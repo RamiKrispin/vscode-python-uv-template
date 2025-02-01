@@ -3,7 +3,7 @@
 # Image settings
 user_name=rkrispin
 image_label=python-dev
-image_tag=0.2.0
+image_tag=0.2.1
 quarto_ver="1.6.39"
 python_ver=3.11
 venv_name="python-$python_ver-dev"

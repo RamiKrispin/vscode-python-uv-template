@@ -9,6 +9,7 @@ This repository provides a template for a dockerized Python development environm
 - Dockerfile
 - UV
 - zsh settings
+- CLI tools 
 
 See also:
 - [A tutorial for setting this template](https://medium.com/@rami.krispin/setting-a-dockerized-python-development-environment-template-de2400c4812b)
@@ -41,7 +42,7 @@ The template was created to enable seamless customization and modification of th
 ```json
 {
     "name": "python-dev",
-    "image": "docker.io/rkrispin/python-dev:arm64.0.0.1",
+    "image": "docker.io/rkrispin/python-dev:arm64.0.2.1",
     "customizations": {
         "vscode": {
             "settings": {
@@ -65,6 +66,7 @@ The template was created to enable seamless customization and modification of th
                 "ms-toolsai.jupyter",
                 "streetsidesoftware.code-spell-checker",
                 "tamasfe.even-better-toml",
+                "aaron-bond.better-comments",
                 //Code
                 "oderwat.indent-rainbow",
                 // Data
@@ -72,19 +74,20 @@ The template was created to enable seamless customization and modification of th
                 "ms-toolsai.datawrangler",
                 // Git
                 "mhutchie.git-graph",
-                "mhutchie.git-graph",
                 // Misc
                 "streetsidesoftware.code-spell-checker"
             ]
         }
     },
-    // Optional, mount local volume:
-    // "mounts": [
-    //     "source=${localEnv:DATA_FOLDER},target=/home/csv,type=bind,consistency=cache"
-    // ],
+    // Optional, local zsh history:
+    "mounts": [
+        "source=${localEnv:HOME}/.zsh_history_dev,target=/root/.zsh_history,type=bind,consistency=cache"
+    ],
+    // Optional set environment variables:
     "remoteEnv": {
         "MY_VAR": "${localEnv:MY_VAR:test_var}"
     },
+    // Optional load environment variables from a file:
     "runArgs": [
         "--env-file",
         ".devcontainer/devcontainer.env"
@@ -103,6 +106,34 @@ The `devcontainer.json` main arguments:
 - `remoteEnv` - set environment variables for the environment
 - `runArgs` - passes arguments to the container during the run time
 
+## Features
+
+This template contains the following CLI tools:
+- [Zsh](https://www.zsh.org/) and [Oh-My-Zsh](https://ohmyz.sh/) setting
+- Mount local zsh history
+- Zsh syntax [highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- [Colorls](https://github.com/athityakumar/colorls)
+
+
+TODO
+- [fzf](https://github.com/junegunn/fzf)
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+- [thefuck](https://github.com/nvbn/thefuck)
+
+
+## Requirements
+
+The `devcontainer.json` use the mount argument to mount the local zsh history file to the container during the run time using the following code chunk:
+
+```json
+   "mounts": [
+        "source=${localEnv:HOME}/.zsh_history_dev,target=/root/.zsh_history,type=bind,consistency=cache"
+    ]
+```
+
+Where the source and target arguments map the local `.zsh_history` file path to the one in the container. 
+
+Note: to prevent the `.zsh_history` file from getting corrupted by writing simultaneously from both the container and locally, I created a copy of my local `.zsh_history` file and labeled it as `.zsh_history_dev`. 
 
 ## Customization
 

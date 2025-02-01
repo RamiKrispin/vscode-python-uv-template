@@ -10,6 +10,11 @@ apt-get update && apt-get install -y --no-install-recommends \
    git \
    openssh-server \
    jq \
+   ruby-full \
+   build-essential \
+   apt-utils \
+   locales \
+   fzf \
    && rm -rf /var/lib/apt/lists/*
 
 # Installing oh my zsh
@@ -21,3 +26,14 @@ echo "source /zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:
 
 # Setting zsh as default terminal
 chsh -s $(which zsh)
+
+# !Installing colorls
+# * Required locales
+gem install colorls
+echo "alias ls='colorls -lA --sd'" >> ${ZDOTDIR:-$HOME}/.zshrc 
+locale-gen en_US.UTF-8
+
+# TODO
+# ! Check why it install old fzf version 
+# ? Check if to install using git clone
+# echo eval "$(fzf --zsh)" >> ${ZDOTDIR:-$HOME}/.zshrc 
