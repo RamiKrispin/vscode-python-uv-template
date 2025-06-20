@@ -3,11 +3,11 @@
 # Image settings
 user_name=rkrispin
 image_label=python-dev
-image_tag=0.2.1
-quarto_ver="1.6.39"
+image_tag=0.2.2
+quarto_ver="1.7.32"
 python_ver=3.11
 venv_name="python-$python_ver-dev"
-ruff_ver="0.8.4"
+ruff_ver="0.12.0"
 dockerfile="Dockerfile"
 # Identify the CPU type (M1 vs Intel)
 if [[ $(uname -m) ==  "aarch64" ]] ; then
@@ -31,8 +31,6 @@ docker build . -f $dockerfile \
                 --build-arg VENV_NAME=$venv_name \
                 --build-arg PYTHON_VER=$python_ver \
                 --build-arg RUFF_VER=$ruff_ver \
-                --build-arg GIT_USER_NAME=$GIT_USER_NAME \
-                --build-arg GIT_USER_EMAIL=$GIT_USER_EMAIL \
                 -t $image_name
 
 if [[ $? = 0 ]] ; then

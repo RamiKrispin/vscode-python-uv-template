@@ -1,6 +1,6 @@
 {
     "name": "python-dev",
-    "image": "docker.io/rkrispin/python-dev:arm64.0.2.1",
+    "image": "docker.io/rkrispin/python-dev:arm64.0.2.2",
     "customizations": {
         "vscode": {
             "settings": {
@@ -33,7 +33,10 @@
                 // Git
                 "mhutchie.git-graph",
                 // Misc
-                "streetsidesoftware.code-spell-checker"
+                "streetsidesoftware.code-spell-checker",
+                // Code
+                "continue.continue"
+
             ]
         }
     },

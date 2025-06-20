@@ -1,6 +1,14 @@
 wheel==0.40.0
-pandas==2.0.3
+pandas==2.2.2
 plotly==5.15.0
 plotly-express==0.4.1
-ipywidgets
-jupyter 
+ipywidgets==8.1.7
+jupyter==1.1.1
+narwhals==1.28.0
+great_tables==0.16.1
+pointblank==0.6.1
+statsforecast==2.0.1
+mlforecast==1.0.2
+lightgbm==4.6.0
+xgboost==3.0.2
+scikit-learn==1.7.0
