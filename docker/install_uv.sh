@@ -12,7 +12,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 source $HOME/.local/bin/env
 uv venv /opt/$VENV_NAME --python $PYTHON_VER \
     && export PATH=/opt/$VENV_NAME/bin:$PATH \
-    && echo "source /opt/$VENV_NAME/bin/activate" >> ~/.bashrc
+    && echo "source /opt/$VENV_NAME/bin/activate" >> ~/.zshrc
 
 
 source /opt/$VENV_NAME/bin/activate
