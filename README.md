@@ -13,6 +13,7 @@ This repository provides a template for a dockerized Python development environm
 
 See also:
 - [A tutorial for setting this template](https://medium.com/@rami.krispin/setting-a-dockerized-python-development-environment-template-de2400c4812b)
+- [From Zero to a Dockerized Development Environment in Minutes with GitHub Repository Templates](https://theaiops.substack.com/p/from-zero-to-a-dockerized-development)
 - [Setting up a Python Development Environment with VScode and Docker](https://github.com/RamiKrispin/vscode-python)
 - [Setting up an R Development  Environment with VScode and Docker](https://github.com/RamiKrispin/vscode-r)
 - [Running Python/R with Docker vs. Virtual Environment](https://medium.com/@rami.krispin/running-python-r-with-docker-vs-virtual-environment-4a62ed36900f)
@@ -32,6 +33,22 @@ https://github.com/RamiKrispin/vscode-python/tree/main#prerequisites
 
 It is straightforward to use this template and clone it to a different account. Click the `Use this template` green button on the top right and select the `Create a new repository` option. The steps from there are similar for creating a new repository on your account. At the end of this process, it generates a new repository with the template. 
 
+Once you have the repository set locally, you can update and modify the image setting according to your requirements using the following steps:
+- Update the required Python libraries under the `docker/requirements.txt` file.
+- Update the image settings (e.g., label, versions, etc.) in the `docker/build_dev_docker.sh` file
+- Execute the `docker/build_dev_docker.sh` file to build the project image
+- Updated the image name in the `.devcontainer/devcontainer.json` file
+
+## Image Settings
+
+For efficiency reasons, the template image is split into two builds:
+- [Base image](https://hub.docker.com/repository/docker/rkrispin/python-base/general) - the core dependencies (Quarto, Debian dependencies, CLI tools, etc.) 
+- [Dev image](https://hub.docker.com/repository/docker/rkrispin/python-dev-template/general) - built on top of the base image, adding the Python virtual environment 
+Generally, when starting a new project, you should only update and rebuild the Dev image. This reduces the image's build from a few minutes to a few seconds.
+
+Both images are available for both `arm64` (Apple Silicon), and `amd64` (Intel) platforms.
+
+The [build_base_docker.sh](https://github.com/RamiKrispin/vscode-python-uv-template/blob/main/docker/build_base_docker.sh) bash script triggers the build of the base image using the [Dockerfile_Base](https://github.com/RamiKrispin/vscode-python-uv-template/blob/main/docker/Dockerfile_Base) file. Likewise, the [build_dev_docker.sh](https://github.com/RamiKrispin/vscode-python-uv-template/blob/main/docker/build_dev_docker.sh) bash script triggers the build of the dev image using the [Dockerfile_Dev](https://github.com/RamiKrispin/vscode-python-uv-template/blob/main/docker/Dockerfile_Dev) file
 
 ## The Dev Containers Settings
 
@@ -42,7 +59,7 @@ The template was created to enable seamless customization and modification of th
 ```json
 {
     "name": "python-dev",
-    "image": "docker.io/rkrispin/python-dev:arm64.0.2.1",
+    "image": "docker.io/rkrispin/python-dev-template:0.0.1",
     "customizations": {
         "vscode": {
             "settings": {
@@ -75,7 +92,10 @@ The template was created to enable seamless customization and modification of th
                 // Git
                 "mhutchie.git-graph",
                 // Misc
-                "streetsidesoftware.code-spell-checker"
+                "streetsidesoftware.code-spell-checker",
+                // Code
+                "continue.continue"
+
             ]
         }
     },
