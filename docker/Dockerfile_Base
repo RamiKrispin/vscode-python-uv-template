@@ -8,7 +8,7 @@ ENV QUARTO_VER=$QUARTO_VER
 
 # Copy files
 RUN mkdir settings
-COPY install_quarto.sh install_dependencies.sh requirements.txt setting_git.sh settings/
+COPY install_quarto.sh install_dependencies.sh setting_git.sh settings/
 # Install dependencies and set zsh
 RUN bash ./settings/install_dependencies.sh
 # Install Quarto
