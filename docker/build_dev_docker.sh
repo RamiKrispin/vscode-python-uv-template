@@ -2,32 +2,22 @@
 
 # Image settings
 user_name=rkrispin
-image_label=python-dev
-image_tag=0.2.2
-quarto_ver="1.7.32"
+project_name="template"
+image_label=python-dev-$project_name
+tag=0.0.1
 python_ver=3.11
 venv_name="python-$python_ver-dev"
 ruff_ver="0.12.0"
-dockerfile="Dockerfile"
-# Identify the CPU type (M1 vs Intel)
-if [[ $(uname -m) ==  "aarch64" ]] ; then
-    CPU="arm64"
-elif [[ $(uname -m) ==  "arm64" ]] ; then
-    CPU="arm64"
-else
-    CPU="amd64"
-fi
-
-tag="$CPU.$image_tag"
+dockerfile="Dockerfile_Dev"
 image_name="rkrispin/$image_label:$tag"
 
 
 
 echo "Build the docker"
 
-docker build . -f $dockerfile \
+docker buildx build  . -f $dockerfile \
+                --platform linux/amd64,linux/arm64 \
                 --progress=plain \
-                --build-arg QUARTO_VER=$quarto_ver \
                 --build-arg VENV_NAME=$venv_name \
                 --build-arg PYTHON_VER=$python_ver \
                 --build-arg RUFF_VER=$ruff_ver \

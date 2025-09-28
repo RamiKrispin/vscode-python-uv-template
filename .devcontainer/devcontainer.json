@@ -1,6 +1,6 @@
 {
     "name": "python-dev",
-    "image": "docker.io/rkrispin/python-dev:arm64.0.2.2",
+    "image": "docker.io/rkrispin/python-dev-template:0.0.1",
     "customizations": {
         "vscode": {
             "settings": {

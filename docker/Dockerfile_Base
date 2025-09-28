@@ -1,0 +1,15 @@
+FROM ubuntu:22.04 
+
+# Arguments
+ARG QUARTO_VER="1.7.32"
+
+# Environment variables
+ENV QUARTO_VER=$QUARTO_VER
+
+# Copy files
+RUN mkdir settings
+COPY install_quarto.sh install_dependencies.sh requirements.txt setting_git.sh settings/
+# Install dependencies and set zsh
+RUN bash ./settings/install_dependencies.sh
+# Install Quarto
+RUN bash ./settings/install_quarto.sh $QUARTO_VER
